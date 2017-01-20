@@ -1,0 +1,17 @@
+*.idea
+.idea
+idea
+.DS_Store
+*.DS_Store
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+node_modules
+log
