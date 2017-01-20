@@ -2,7 +2,7 @@ module.exports = {
 
     DEBUG: true,
 
-    PORT: 8200,
+    PORT: 8000,
 
     MYSQL: {
         host: '',

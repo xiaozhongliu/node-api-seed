@@ -34,7 +34,7 @@ function isNoAuthPath(url) {
  * @returns {boolean}
  */
 function checkToken(token, stamp) {
-    return hash(config.TOKEN_HUDONG + stamp) == token;
+    return hash(config.REQUEST_TOKEN + stamp) == token;
 }
 
 /**
