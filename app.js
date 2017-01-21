@@ -1,6 +1,5 @@
 require('./globalHelper');
 let express = require('express');
-let compress = require('compression');
 let bodyParser = require('body-parser');
 let expressValidator = require('express-validator');
 let router = require('./router');
@@ -18,11 +17,6 @@ let {
 
 let app = express();
 
-app.set('views', './pages/dist');
-app.set('view engine', 'html');
-app.engine('html', require('ejs-mate'));
-app.use(compress());
-app.use(express.static('./pages/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(expressValidator({customValidators}));
