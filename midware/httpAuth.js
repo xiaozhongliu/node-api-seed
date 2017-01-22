@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
             return next(err);
         }
 
-        //给日志文件访问应用http auth
+        //apply http auth to log accessing
         if (/\.log$/.test(req.url)) {
             res.end(fs.readFileSync(config.API_LOG_PATH + req.url.substr(1)));
         }

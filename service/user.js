@@ -3,7 +3,7 @@ let User = require('../db').User;
 module.exports = {
 
     /**
-     * 根据username查询user
+     * get user by username
      * @param username
      * @returns {*}
      */

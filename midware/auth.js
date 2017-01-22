@@ -18,9 +18,8 @@ module.exports = (req, res, next) => {
 };
 
 /**
- * 不用身份验证的路径或文件
- * 根节点用来检查服务状态,跳过身份验证
- * @param url 请求url
+ * no auth files or paths
+ * @param url: req url
  * @returns {boolean}
  */
 function isNoAuthPath(url) {
@@ -28,9 +27,9 @@ function isNoAuthPath(url) {
 }
 
 /**
- * 判断客户端和服务器hash的token是否匹配
- * @param token 客户端传来的token
- * @param stamp 客户端传来的时间戳
+ * check if the token hashed on server side matches the token from client
+ * @param token: token from client
+ * @param stamp: ts from client
  * @returns {boolean}
  */
 function checkToken(token, stamp) {
@@ -38,8 +37,8 @@ function checkToken(token, stamp) {
 }
 
 /**
- * 通过时间戳判断是否是五分钟内的请求
- * @param stamp 客户端传来的时间戳
+ * check if the req is within 5m
+ * @param stamp: ts from client
  * @returns {boolean}
  */
 function checkStamp(stamp) {

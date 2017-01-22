@@ -1,12 +1,12 @@
-## /task下代码独立运行,所以必需与其它文件夹代码关联最少.
+# Codes under /task are independent, so they should have least conjunction with codes from other folders.
 
-举例:  
-加载config不应该加载所有util:
+### For example:
+only config util should be loaded other than all the utils:
 ```javascript
 let config = require('../util/toolset').getConfig();
 ```
-而应该这样加载:
+below is the right way:
 ```javascript
 let config = require('../util').config;
 ```
-不然TASK的logger和SITE的logger冲突会导致非预期结果.
+Otherwise, logger of TASK will conflict with logger of SITE.

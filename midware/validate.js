@@ -3,10 +3,10 @@ let validate = require('../util').validhelper;
 
 module.exports = {
     /**
-     * 通用请求参数验证中间件(针对公用参数的验证)
+     * validation midware on common params which exist in every inteface
      */
     common(req, res, next) {
-        //不用校验参数的路径或文件
+        //no auth files or paths
         if (config.NO_AUTH_PATHS.includes(req.url) || config.NO_AUTH_REG.test(req.url)) {
             return next();
         }
@@ -17,7 +17,7 @@ module.exports = {
     },
 
     /**
-     * 接口验证中间件: login
+     * specific validation on interface: login
      */
     login(req, res, next) {
         validate.assertEmptyOne(req, 'password', Message('PasswordEmpty').code);

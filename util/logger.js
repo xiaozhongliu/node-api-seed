@@ -14,10 +14,10 @@ let appenders = [{
     }
 }];
 
-//非生产环境日志同时输出到console
+//no prod logs also output to onsole
 !config.DEBUG || appenders.push({type: 'console'});
 
-//如果日志目录不存在则创建
+//create the log path if it doesn't exist
 fs.existsSync(config.API_LOG_PATH) || fs.mkdirSync(config.API_LOG_PATH);
 
 log4js.configure({appenders});

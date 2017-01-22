@@ -5,7 +5,7 @@ module.exports = {
     _config: null,
 
     /**
-     * 根据命令行环境参数获取相应配置
+     * generate config by the env param
      * @returns {*}
      */
     getConfig() {
@@ -15,7 +15,7 @@ module.exports = {
                 let custom_config = require(`../config/${this._config.NODE_ENV}`);
                 Object.assign(this._config, custom_config);
             } catch (e) {
-                console.log('Please make sure environment variable NODE_ENV is set.' );
+                console.log('Please make sure environment variable NODE_ENV is set.');
                 process.exit();
             }
         }
@@ -24,7 +24,7 @@ module.exports = {
 
     /**
      * md5 hash
-     * @param target 原始字符串
+     * @param target: original string
      * @returns {*}
      */
     hash(target) {
@@ -35,8 +35,8 @@ module.exports = {
 
     /**
      * hmac sign
-     * @param target 原始字符串
-     * @param key    加密密钥
+     * @param target: original string
+     * @param key:    encryption secret
      * @returns {string|String|*}
      */
     sign(target, key) {

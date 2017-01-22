@@ -6,7 +6,7 @@ let logger = require('./logger');
 logger.info(`${moment().format('YYYY-MM-DD HH:mm:ss')} 【 task starts 】\n`);
 
 /**
- * 每天凌晨3点执行任务
+ * execute task at 3:00 everyday
  */
 schedule.scheduleJob({hour: 3, minute: 0, second: 0}, () => {
 

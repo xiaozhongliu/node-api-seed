@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
         logger.info('Data  ', JSON.stringify(req.body));
     }
 
-    //给原生res.json方法增加一个记录日志的切面
+    //add a logging aspect to the primary res.json function
     let original = res.json;
     res.json = function (json) {
         logger.info('Resp  ', JSON.stringify(json));
@@ -29,8 +29,8 @@ module.exports = (req, res, next) => {
 };
 
 /**
- * 不用记录日志的文件
- * @param url 请求url
+ * no log files or paths
+ * @param url: req url
  * @returns {boolean}
  */
 function isNoLogFile(url) {

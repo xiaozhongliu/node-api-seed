@@ -1,10 +1,10 @@
 module.exports = {
 
     /**
-     * 校验单个参数是否为空,并传入校验失败错误代码
-     * @param req      request对象
-     * @param field    待校验参数
-     * @param code     校验失败错误代码
+     * validate if a field is empty
+     * @param req      req obj
+     * @param field    target field
+     * @param code     validation err code
      */
     assertEmptyOne(req, field, code) {
         let assertMethod = req.method == 'GET' ? req.checkQuery : req.checkBody;
@@ -12,9 +12,9 @@ module.exports = {
     },
 
     /**
-     * 批量校验参数是否为空
-     * @param req       request对象
-     * @param fields    待校验参数列表
+     * batch validate if some fields are empty
+     * @param req       req obj
+     * @param fields    target fields list
      */
     assertEmpty(req, fields) {
         fields.forEach(field => {
@@ -23,9 +23,9 @@ module.exports = {
     },
 
     /**
-     * 校验header中的字段是否为空
-     * @param req       request对象
-     * @param fields    待校验参数列表
+     * validate if some header fields are empty
+     * @param req       req obj
+     * @param fields    target fields list
      */
     assertEmptyFromHeader(req, fields) {
         fields.forEach(field => {
