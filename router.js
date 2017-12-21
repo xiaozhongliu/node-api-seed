@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     })
     req.on('end', () => {
         json = xml2json.toJson(req.rawBody)
-        res.send(JSON.stringify(json))
+        res.json(JSON.parse(json))
     })
 })
 
