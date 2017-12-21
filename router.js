@@ -7,6 +7,9 @@ const validate = require('./midware').validate
  * check health
  */
 router.get('/', (req, res) => {
+    req.json({ code: 1 })
+})
+router.post('/', (req, res) => {
     req.rawBody = ''
     var json = {}
     req.setEncoding('utf8')
