@@ -20,7 +20,8 @@
     "mysql": "^2.12.0",
     "node-schedule": "^1.2.0",
     "redis": "^2.6.3",
-    "sequelize": "^3.29.0"
+    "sequelize": "^3.29.0",
+    "xml2json": "^0.11.0"
   },
   "devDependencies": {}
 }
