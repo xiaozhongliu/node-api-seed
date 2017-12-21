@@ -7,7 +7,7 @@ module.exports = {
      */
     common(req, res, next) {
         //no auth files or paths
-        if (config.NO_AUTH_PATHS.includes(req.url) || config.NO_AUTH_REG.test(req.url)) {
+        if (config.NO_AUTH_PATHS.includes(req.path) || config.NO_AUTH_REG.test(req.path)) {
             return next();
         }
 

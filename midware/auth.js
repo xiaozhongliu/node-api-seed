@@ -1,7 +1,7 @@
-let {config, hash} = require('../util');
+let { config, hash } = require('../util');
 
 module.exports = (req, res, next) => {
-    if (isNoAuthPath(req.url)) {
+    if (isNoAuthPath(req.path)) {
         return next();
     }
 
