@@ -23,9 +23,9 @@ module.exports = {
      */
     login(req, res, next) {
         validateParams(req, next, [
+            ['sysType', Type.Number, true],
             ['username', Type.String, true],
             ['password', Type.String, true],
-            ['sysType', Type.Number, true],
         ])
     },
 
@@ -34,8 +34,10 @@ module.exports = {
      */
     register(req, res, next) {
         validateParams(req, next, [
+            ['sysType', Type.Number, true],
             ['username', Type.String, true],
             ['password', Type.String, true],
+            ['avatar', Type.String, false],
         ])
     },
 }

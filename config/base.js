@@ -8,6 +8,9 @@ module.exports = {
     HASH_SECRET: 'vmHOX8ALwx',
     JWT_SECRET: 's!v^%W.Y80Mp$g$',
 
+    // jwt token expires in 10 days
+    JWT_TOKEN_TIMEOUT: 864000,
+
     // no auth stuffs
     NO_AUTH_REG: /\.log$|\.ico$|^\/socket.io/,
     NO_AUTH_PATHS: [
