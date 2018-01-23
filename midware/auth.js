@@ -1,48 +1,38 @@
-let { config, hash } = require('../util');
+const { hash } = require('../util')
+const config = require('../config')
+
+const HASHED_TOKEN = hash(config.REQUEST_TOKEN)
 
 module.exports = (req, res, next) => {
     if (isNoAuthPath(req.path)) {
-        return next();
+        return next()
     }
 
-    let token = req.header('token');
-    let stamp = req.header('ts');
+    const stamp = req.header('ts')
+    const token = req.header('token')
 
-    if (!token || !stamp
-        || !checkToken(token, stamp)
-        || !checkStamp(stamp)) {
-        return next(MessageErr('AuthFail'));
+    if (!token || !stamp || !checkToken(token, stamp)) {
+        return next(global.MessageErr('AuthFail'))
     }
 
-    next();
-};
+    next()
+}
 
 /**
  * no auth files or paths
- * @param url: req url
+ * @param   {string} url    req url
  * @returns {boolean}
  */
 function isNoAuthPath(url) {
-    return config.NO_AUTH_PATHS.includes(url) || config.NO_AUTH_REG.test(url);
+    return config.NO_AUTH_PATHS.includes(url) || config.NO_AUTH_REG.test(url)
 }
 
 /**
  * check if the token hashed on server side matches the token from client
- * @param token: token from client
- * @param stamp: ts from client
+ * @param   {string} token  token from client
+ * @param   {string} stamp  ts from client
  * @returns {boolean}
  */
 function checkToken(token, stamp) {
-    return hash(config.REQUEST_TOKEN + stamp) == token;
-}
-
-/**
- * check if the req is within 5m
- * @param stamp: ts from client
- * @returns {boolean}
- */
-function checkStamp(stamp) {
-    let current = new Date().getTime();
-    let diffSecs = current - stamp;
-    return Math.abs(diffSecs) < 300000;
+    return hash(HASHED_TOKEN + stamp) === token
 }

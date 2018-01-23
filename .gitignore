@@ -1,17 +1,10 @@
-*.idea
 .idea
-idea
 .DS_Store
-*.DS_Store
+.vscode/chrome
 
-lib-cov
-*.seed
 *.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
 
-node_modules
-log
+dist/
+jest_0/
+coverage/
+node_modules/

@@ -1,13 +1,12 @@
 module.exports = {
 
     DEBUG: true,
+    MAILER_ON: true,
 
-    PORT: 8000,
-
-    MYSQL: {
-        host: '',
-        name: '',
-        user: '',
-        pwd: '',
+    REDIS: {
+        HOST: '127.0.0.1',
+        PORT: 6379,
     },
-};
+
+    MONGO_DB: 'mongodb://test:test@127.0.0.1/test',
+}

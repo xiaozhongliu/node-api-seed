@@ -5,23 +5,36 @@
   "main": "app.js",
   "author": "xiaozhong",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:XiaozhongLiu/node-api-seed.git"
+  "scripts": {
+    "start": "node app",
+    "pm2start": "cnpm i --production && pm2 start pm2.config.js",
+    "pm2startqa": "cnpm i --production && pm2 start pm2.config.js --env qa",
+    "pm2starttest": "cnpm i --production && pm2 start pm2.config.js --env test",
+    "pm2restart": "cnpm i --production && pm2 restart pm2.config.js",
+    "pm2restartqa": "cnpm i --production && pm2 restart pm2.config.js --env qa",
+    "pm2restarttest": "cnpm i --production && pm2 restart pm2.config.js --env test",
+    "pm2stop": "pm2 stop pm2.config.js",
+    "pm2delete": "pm2 delete pm2.config.js"
   },
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "axios": "^0.16.2",
+    "body-parser": "^1.18.2",
     "co": "^4.6.0",
-    "express": "^4.14.0",
-    "express-validator": "^3.1.2",
-    "http-auth": "^3.1.1",
-    "log4js": "^1.1.0",
-    "moment": "^2.17.1",
-    "mysql": "^2.12.0",
-    "node-schedule": "^1.2.0",
-    "redis": "^2.6.3",
-    "sequelize": "^3.29.0",
-    "xml2json": "^0.11.0"
+    "express": "^4.16.2",
+    "express-status-monitor": "^1.0.1",
+    "express-validator": "^3.2.1",
+    "http-auth": "^3.2.3",
+    "log4js": "^2.3.12",
+    "moment": "^2.19.2",
+    "mongoose": "^4.13.5",
+    "nodemailer": "^4.4.0",
+    "redis": "^2.8.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^4.12.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1"
+  }
 }

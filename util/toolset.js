@@ -1,46 +1,47 @@
-let crypto = require('crypto');
+/* ******************************************************************
+ * fragmentary util functions are put here
+ ****************************************************************** */
+const crypto = require('crypto')
 
 module.exports = {
 
-    _config: null,
-
-    /**
-     * generate config by the env param
-     * @returns {*}
-     */
-    getConfig() {
-        if (!this._config) {
-            try {
-                this._config = require('../config/common');
-                let custom_config = require(`../config/${this._config.NODE_ENV}`);
-                Object.assign(this._config, custom_config);
-            } catch (e) {
-                console.log('Please make sure environment variable NODE_ENV is set.');
-                process.exit();
-            }
-        }
-        return this._config;
-    },
-
     /**
      * md5 hash
-     * @param target: original string
-     * @returns {*}
+     * @param   {string} target original string
+     * @returns {string}
      */
-    hash(target) {
-        let md5 = crypto.createHash('md5');
-        md5.update(target);
-        return md5.digest('hex');
-    },
+    hash,
 
     /**
      * hmac sign
-     * @param target: original string
-     * @param key:    encryption secret
-     * @returns {string|String|*}
+     * @param   {string} target original string
+     * @param   {string} key    encryption secret
+     * @returns {string}
      */
     sign(target, key) {
-        let hmac = crypto.createHmac('sha1', key);
-        return hmac.update(target).digest().toString('base64');
+        const hmac = crypto.createHmac('sha1', key)
+        return hmac.update(target).digest().toString('base64')
     },
-};
+
+    /**
+     * get ts and token used to establish a request
+     * @param   {string} privateKey    private key of a service
+     * @returns {*}
+     */
+    getTSAndToken(privateKey) {
+        const ts = Date.now()
+        const token = hash(`${hash(privateKey)}${ts}`)
+        return { ts, token }
+    },
+}
+
+/**
+ * md5 hash
+ * @param   {string} target original string
+ * @returns {string}
+ */
+function hash(target) {
+    const md5 = crypto.createHash('md5')
+    md5.update(target)
+    return md5.digest('hex')
+}

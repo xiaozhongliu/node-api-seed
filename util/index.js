@@ -1,11 +1,14 @@
-let toolset = require('./toolset');
+const toolset = require('./toolset')
 
 module.exports = {
-    redis: require('./redisClient')(),
-    validhelper: require('./validHelper'),
-    customValidators: require('./customValidators'),
-    logger: require('./logger'),
-    config: toolset.getConfig(),
     hash: toolset.hash,
     sign: toolset.sign,
-};
+    getTSAndToken: toolset.getTSAndToken,
+    client: require('./client'),
+    logger: require('./logger'),
+    mailer: require('./mailer'),
+    mongo: require('./mongo'),
+    redis: require('./redis'),
+    validhelper: require('./valid-helper'),
+    customValidators: require('./validator'),
+}

@@ -1,4 +1,3 @@
 module.exports = {
-    user: require('./user'),
-    redis: require('./redis'),
-};
+    redisSvc: require('./redis-svc'),
+}

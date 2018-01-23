@@ -1,45 +1,45 @@
-require('./globalHelper');
-let express = require('express');
-let bodyParser = require('body-parser');
-let expressValidator = require('express-validator');
-let router = require('./router');
-let {
-    httpAuth,
+require('./global-helper')
+const express = require('express')
+const bodyParser = require('body-parser')
+const expressValidator = require('express-validator')
+const {
+    filter,
+    monitor,
     httplog,
     cors,
     auth,
     validate,
-} = require('./midware');
-let {
-    config,
-    customValidators,
-} = require('./util');
+} = require('./midware')
+const { customValidators } = require('./util')
+const { errorLogCtrl } = require('./ctrl')
+const router = require('./router')
+const config = require('./config')
 
-let app = express();
+const app = express()
+app.get('*', filter)
+app.use(monitor)
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(expressValidator({ customValidators }))
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(expressValidator({customValidators}));
-
-app.get(config.HTTP_AUTH.itemsReg, httpAuth);
-app.use(httplog);
-app.use(cors);
-app.use(auth);
-app.use(validate.common);
-app.use(router);
+app.use(httplog)
+app.use(cors)
+app.use(auth)
+app.use(validate.common)
+app.use(router)
 
 app.use((req, res, next) => {
-    next(MessageErr('NotFound'));
-});
+    next(global.MessageErr('NotFound', req.url))
+})
 
-//collection of custom error codes
-let messages = require('./message');
-let messageCodes = [...messages.values()].map(i => i.code);
+app.use(({ code = -1, message, stack }, req, res, next) => { // eslint-disable-line 
+    res.json({ code, msg: message })
+    if (code > 10001 || req.method === 'OPTIONS') return
+    errorLogCtrl.createErrorLog(req, code, message, stack)
+})
 
-app.use(({code = -1, message, stack}, req, res, next) => {
-    res.json({code, msg: message});
-    //output stack of unexpected error to console, for trouble shooting
-    messageCodes.includes(code) || console.log(stack);
-});
+app.listen(config.API_PORT)
 
-app.listen(config.PORT);
+process.on('unhandledRejection', err => {
+    console.log('unhandledRejection', err)
+})

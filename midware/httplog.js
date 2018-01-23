@@ -1,38 +1,40 @@
-let {logger, config} = require('../util');
+const config = require('../config')
+const logger = require('../util').logger(config.API_LOG_PATH)
 
-logger.info(`【 Service starts on http://localhost:${config.PORT} 】\n`);
+logger.info(`service starts at http://localhost:${config.API_PORT}\n`)
 
 module.exports = (req, res, next) => {
-
-    if (isNoLogFile(req.url)) return next();
-
-    let start = new Date();
-
-    logger.info('Start ', req.method, `${req.protocol}://${req.get('host')}${req.url}`);
-    if (req.method != 'GET') {
-        logger.info('Data  ', JSON.stringify(req.body));
+    if (isNoLogFile(req.url) || req.method === 'OPTIONS') {
+        return next()
     }
 
-    //add a logging aspect to the primary res.json function
-    let original = res.json;
+    const start = new Date()
+
+    logger.info('Start ', req.method, req.url)
+    if (req.method !== 'GET') {
+        logger.info('Data  ', JSON.stringify(req.body))
+    }
+
+    // add a logging aspect to the primary res.json function
+    const original = res.json
     res.json = function (json) {
-        logger.info('Resp  ', JSON.stringify(json));
-        return original.call(this, json);
-    };
+        logger.info('Resp  ', JSON.stringify(json))
+        return original.call(this, json)
+    }
 
     res.on('finish', () => {
-        let duration = new Date() - start;
-        logger.info('Done  ', res.statusCode, `(${duration}ms)\n`);
-    });
+        const duration = new Date() - start
+        logger.info('Done  ', res.statusCode, `(${duration}ms)\n`)
+    })
 
-    next();
-};
+    next()
+}
 
 /**
  * no log files or paths
- * @param url: req url
+ * @param   {string} url    req url
  * @returns {boolean}
  */
 function isNoLogFile(url) {
-    return config.NO_AUTH_REG.test(url);
+    return config.NO_AUTH_REG.test(url)
 }
