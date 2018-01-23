@@ -1,12 +1,14 @@
 const router = require('express').Router()
 const { validate } = require('./midware')
 const {
-    liveCtrl,
+    baseCtrl,
 } = require('./ctrl')
 
 
-// test
-register('get', '/test', liveCtrl, 'test')
+// base
+register('post', '/login', baseCtrl, 'login')
+register('get', '/verify', baseCtrl, 'verify')
+register('post', '/register', baseCtrl, 'register')
 
 
 // check health

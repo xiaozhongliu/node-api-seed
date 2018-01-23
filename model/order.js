@@ -66,4 +66,4 @@ const Order = new Schema({
 Order.index({ username: 1 })
 Order.plugin(require('./plugin/pagedFind'))
 
-mongoose.model('Order', Order)
+module.exports = mongoose.model('Order', Order)

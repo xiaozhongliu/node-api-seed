@@ -25,6 +25,7 @@ module.exports = {
         'no-underscore-dangle': 0,
         'no-unused-expressions': 0,
         'no-use-before-define': 0,
+        'object-curly-newline': 0,
         'prefer-const': ['error', { 'destructuring': 'all' }],
         'semi': [2, 'never'],
     }

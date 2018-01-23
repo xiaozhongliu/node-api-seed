@@ -24,11 +24,14 @@
     "express-status-monitor": "^1.0.1",
     "express-validator": "^3.2.1",
     "http-auth": "^3.2.3",
+    "jsonwebtoken": "^8.1.1",
     "log4js": "^2.3.12",
     "moment": "^2.19.2",
     "mongoose": "^4.13.5",
     "nodemailer": "^4.4.0",
-    "redis": "^2.8.0"
+    "pg": "6.4.1",
+    "redis": "^2.8.0",
+    "sequelize": "^4.4.3"
   },
   "devDependencies": {
     "eslint": "^4.12.0",

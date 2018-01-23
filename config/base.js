@@ -5,11 +5,16 @@ module.exports = {
 
     // security
     REQUEST_TOKEN: 'yMtpwu44Mf',
+    HASH_SECRET: 'vmHOX8ALwx',
+    JWT_SECRET: 's!v^%W.Y80Mp$g$',
 
     // no auth stuffs
-    NO_AUTH_REG: /\.log$|^\/socket.io/,
+    NO_AUTH_REG: /\.log$|\.ico$|^\/socket.io/,
     NO_AUTH_PATHS: [
         '/',
+        '/monitor',
+        '/login',
+        '/register',
     ],
 
     // logs location

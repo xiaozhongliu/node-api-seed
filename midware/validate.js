@@ -19,11 +19,23 @@ module.exports = {
     },
 
     /**
-    * validate api: test
-    */
-    test(req, res, next) {
+     * validate api: login
+     */
+    login(req, res, next) {
         validateParams(req, next, [
-            ['liveUrl', Type.Url, true],
+            ['username', Type.String, true],
+            ['password', Type.String, true],
+            ['sysType', Type.Number, true],
+        ])
+    },
+
+    /**
+     * validate api: register
+     */
+    register(req, res, next) {
+        validateParams(req, next, [
+            ['username', Type.String, true],
+            ['password', Type.String, true],
         ])
     },
 }

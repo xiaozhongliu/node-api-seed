@@ -1,4 +1,4 @@
 module.exports = {
-    liveCtrl: require('./live-ctrl'),
+    baseCtrl: require('./base-ctrl'),
     errorLogCtrl: require('./error-log-ctrl'),
 }

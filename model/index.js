@@ -1,3 +1,4 @@
 module.exports = {
-    Order: require('./order'),
+    User: require('./user'), // a sequelize model
+    Order: require('./order'), // a mongoose model
 }

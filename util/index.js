@@ -8,6 +8,7 @@ module.exports = {
     logger: require('./logger'),
     mailer: require('./mailer'),
     mongo: require('./mongo'),
+    postgres: require('./postgres'),
     redis: require('./redis'),
     validhelper: require('./valid-helper'),
     customValidators: require('./validator'),
