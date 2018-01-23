@@ -3,24 +3,32 @@ A node api seed project.
 
 ### Techs involve:
 
-|Aspect     |Tech               |
-|:---       |:---               |
-|fx         |express            |
-|task       |node-schedule      |
-|db         |sequelize          |
-|memcache   |redis              |
-|flow ctrl  |co                 |
-|validation |express-validator  |
-|log        |log4js             |
-|log auth   |http-auth          |
+|Aspect     |Tech                  |
+|:---       |:---                  |
+|web fx     |express               |
+|task       |node-schedule         |
+|db postgres|sequelize             |
+|db mongodb |mongoose              |
+|memcache   |redis                 |
+|http client|axios                 |
+|logger     |log4js                |
+|mailer     |nodemailer            |
+|dashboard  |express-status-monitor|
+|jwt auth   |jsonwebtoken          |
+|validation |express-validator     |
+|async flow |async/await of ES7    |
+|log auth   |http-auth             |
+|js checker |eslint                |
+|proc mana |pm2                   |
 
 ### Special funcs offer:
 Api access ctrl via ts & token.  
-Elaborate api req log.  
-Flexible req params validation.  
-Log online view and its access ctrl via basic http auth.  
-Reasonable config merging mechanism.  
-Definite DRY, AOP, ES6, OCD, etc.
+Elaborate api req log in files.  
+Flexible declarative req params validation.  
+Log online view behind http auth.  
+Server status monitor dashboard behind http auth.  
+Reasonable multi-env config merging mechanism.  
+Definite DRY, AOP, ES6/ES7, OCD, etc.
 
 ### Usage:
 ```bash
