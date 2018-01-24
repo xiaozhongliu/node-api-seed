@@ -24,7 +24,7 @@ const Order = new Schema({
     paymentChannel: Number,
 
     // 商品ID
-    goodID: ObjectId,
+    goodId: ObjectId,
 
     // 订单总额
     orderAmount: Number,

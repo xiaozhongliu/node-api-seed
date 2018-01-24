@@ -7,7 +7,7 @@ const { INTEGER, STRING } = require('sequelize')
 const User = postgres.define('user', {
 
     // 主键
-    userID: { type: INTEGER, primaryKey: true, autoIncrement: true, field: 'user_id' },
+    userId: { type: INTEGER, primaryKey: true, autoIncrement: true, field: 'user_id' },
     // 系统分类
     sysType: { type: INTEGER, allowNull: false, field: 'sys_type' },
     // 用户名

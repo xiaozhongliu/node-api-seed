@@ -30,7 +30,8 @@
     "nodemailer": "^4.4.2",
     "pg": "^7.4.1",
     "redis": "^2.8.0",
-    "sequelize": "^4.32.1"
+    "sequelize": "^4.32.1",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "eslint": "^4.16.0",

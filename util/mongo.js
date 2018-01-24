@@ -7,6 +7,8 @@ const { MONGO } = require('../config')
 Mongoose.connect(MONGO, {
     promiseLibrary: global.Promise,
     poolSize: 20
-}, console.log)
+}, err => {
+    err && console.log(err)
+})
 
 module.exports = Mongoose

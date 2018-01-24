@@ -1,5 +1,14 @@
+const express = require('express')
+const shortid = require('shortid')
 const config = require('../config')
 const logger = require('../util').logger(config.API_LOG_PATH)
+
+// add a logging aspect to the primary res.json function
+const origin = express.response.json
+express.response.json = function (json) {
+    logger.info(`[${this.reqId}] Resp  `, JSON.stringify(json))
+    return origin.call(this, json)
+}
 
 logger.info(`service starts at http://localhost:${config.API_PORT}\n`)
 
@@ -8,23 +17,17 @@ module.exports = (req, res, next) => {
         return next()
     }
 
-    const start = new Date()
+    res.start = new Date()
+    res.reqId = shortid.generate()
 
-    logger.info('Start ', req.method, req.url)
+    logger.info(`[${res.reqId}] Start `, req.method, req.url)
     if (req.method !== 'GET') {
-        logger.info('Data  ', JSON.stringify(req.body))
+        logger.info(`[${res.reqId}] Data  `, JSON.stringify(req.body))
     }
 
-    // add a logging aspect to the primary res.json function
-    const original = res.json
-    res.json = function (json) {
-        logger.info('Resp  ', JSON.stringify(json))
-        return original.call(this, json)
-    }
-
-    res.on('finish', () => {
-        const duration = new Date() - start
-        logger.info('Done  ', res.statusCode, `(${duration}ms)\n`)
+    res.on('finish', function () {
+        const duration = new Date() - this.start
+        logger.info(`[${this.reqId}] Done  `, this.statusCode, `(${duration}ms)\n`)
     })
 
     next()
