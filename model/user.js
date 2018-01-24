@@ -5,6 +5,8 @@ const { INTEGER, STRING } = require('sequelize')
  * 用户
  */
 const User = postgres.define('user', {
+
+    // 主键
     userID: { type: INTEGER, primaryKey: true, autoIncrement: true, field: 'user_id' },
     // 系统分类
     sysType: { type: INTEGER, allowNull: false, field: 'sys_type' },
@@ -14,6 +16,7 @@ const User = postgres.define('user', {
     password: { type: STRING(32), allowNull: false },
     // 头像
     avatar: { type: STRING(200) },
+
 }, {
     comment: '用户表',
     freezeTableName: true,

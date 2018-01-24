@@ -1,15 +1,12 @@
 /* ******************************************************************
  * mongo client on the basis of mongoose
  ****************************************************************** */
-const mongoose = require('mongoose')
-const config = require('../config')
+const Mongoose = require('mongoose')
+const { MONGO } = require('../config')
 
-mongoose.connect(config.MONGO, {
+Mongoose.connect(MONGO, {
     promiseLibrary: global.Promise,
-    useMongoClient: true,
     poolSize: 20
-}, err => {
-    err && console.log(err)
-})
+}, console.log)
 
-module.exports = mongoose
+module.exports = Mongoose

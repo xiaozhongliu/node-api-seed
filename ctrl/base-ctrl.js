@@ -41,7 +41,7 @@ module.exports = {
     },
 
     /**
-     * jwt token verification
+     * verify jwt token
      */
     async verify(req, res, next) {
         const { authorization } = req.headers

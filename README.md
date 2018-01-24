@@ -19,16 +19,18 @@ A node api seed project.
 |async flow |async/await of ES7    |
 |log auth   |http-auth             |
 |js checker |eslint                |
-|proc mana |pm2                   |
+|proc mana  |pm2                   |
 
-### Special funcs offer:
-Api access ctrl via ts & token.  
-Elaborate api req log in files.  
-Flexible declarative req params validation.  
-Log online view behind http auth.  
+### Other funcs offer:
+Api access control via ts & token.  
+Elaborate api request log into files.  
+Flexible declarative request validation.  
+Request log online view behind http auth.  
 Server status monitor dashboard behind http auth.  
+Ready made api samples with jwt and latest js features.  
+Centralized system level config & messages management.  
 Reasonable multi-env config merging mechanism.  
-Definite DRY, AOP, ES6/ES7, OCD, etc.
+Definite DRY, SRP, AOP, ES6/ES7, OCD, etc.
 
 ### Usage:
 ```bash

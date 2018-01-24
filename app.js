@@ -41,5 +41,5 @@ app.use(({ code = -1, message, stack }, req, res, next) => { // eslint-disable-l
 app.listen(config.API_PORT)
 
 process.on('unhandledRejection', err => {
-    console.log('unhandledRejection', err)
+    console.log('Unhandled Rejection: ', err)
 })

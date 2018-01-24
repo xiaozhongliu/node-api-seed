@@ -1,5 +1,5 @@
 /* ******************************************************************
- * custom validators for express-validator. read more:
+ * custom validators for express-validator. read more here:
  * https://github.com/ctavan/express-validator#middleware-options
  ****************************************************************** */
 module.exports = {

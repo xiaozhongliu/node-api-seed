@@ -17,27 +17,26 @@
     "pm2delete": "pm2 delete pm2.config.js"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.17.1",
     "body-parser": "^1.18.2",
-    "co": "^4.6.0",
     "express": "^4.16.2",
     "express-status-monitor": "^1.0.1",
-    "express-validator": "^3.2.1",
+    "express-validator": "^4.3.0",
     "http-auth": "^3.2.3",
     "jsonwebtoken": "^8.1.1",
-    "log4js": "^2.3.12",
-    "moment": "^2.19.2",
-    "mongoose": "^4.13.5",
-    "nodemailer": "^4.4.0",
-    "pg": "6.4.1",
+    "log4js": "^2.5.2",
+    "moment": "^2.20.1",
+    "mongoose": "^5.0.1",
+    "nodemailer": "^4.4.2",
+    "pg": "^7.4.1",
     "redis": "^2.8.0",
-    "sequelize": "^4.4.3"
+    "sequelize": "^4.32.1"
   },
   "devDependencies": {
-    "eslint": "^4.12.0",
+    "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1"
   }
 }

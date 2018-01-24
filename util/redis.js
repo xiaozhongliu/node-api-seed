@@ -1,10 +1,10 @@
 /* ******************************************************************
  * redis client on the basis of node_redis
  ****************************************************************** */
-const redis = require('redis')
+const Redis = require('redis')
 const { REDIS } = require('../config')
 
-module.exports = redis.createClient({
+module.exports = Redis.createClient({
     host: REDIS.HOST,
     port: REDIS.PORT,
     retry_strategy(options) {

@@ -29,5 +29,7 @@ module.exports = {
         }
 
         mailer.alarm(config.APP_NAME, JSON.stringify(errorLog))
+
+        // logic to save errors into db
     },
 }
