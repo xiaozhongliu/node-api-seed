@@ -3,9 +3,9 @@ const messages = require('./message')
 /**
  * message related helpers
  */
-global.Message = key => messages.get(key)
+global.Message = key => messages[key]
 global.MessageErr = (key, param) => {
-    let { code, msg } = global.Message(key)
+    let { code, msg } = messages[key]
     if (param) {
         msg = msg.replace('@param', param)
     }

@@ -21,7 +21,7 @@ A node api seed project.
 |js checker |[eslint](https://eslint.org/)                                    |
 |proc mana  |[pm2](http://pm2.keymetrics.io/)                                 |
 
-### Other funcs offering:
+### Other features offering:
 Api access control via ts & token.  
 Elaborate api request log into files.  
 Flexible declarative request validation.  
