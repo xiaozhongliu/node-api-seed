@@ -27,16 +27,12 @@ module.exports = {
             redirectUrl = `${redirectUrl}?accessToken=${accessToken}`
         }
 
-        res.json({
-            code: 1,
-            data: {
-                accessToken,
-                sysType: getRes.sysType,
-                username: getRes.username,
-                avatar: getRes.avatar,
-                redirectUrl,
-            },
-            msg: 'success',
+        res.success({
+            accessToken,
+            sysType: getRes.sysType,
+            username: getRes.username,
+            avatar: getRes.avatar,
+            redirectUrl,
         })
     },
 
@@ -61,11 +57,7 @@ module.exports = {
             return next(global.MessageErr('VerifyFail'))
         }
 
-        res.json({
-            code: 1,
-            data: payload,
-            msg: 'success',
-        })
+        res.success(payload)
     },
 
     /**
@@ -90,9 +82,6 @@ module.exports = {
             avatar,
         })
 
-        res.json({
-            code: 1,
-            msg: 'success',
-        })
+        res.success()
     },
 }

@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 })
 
 app.use(({ code = -1, message, stack }, req, res, next) => { // eslint-disable-line 
-    res.json({ code, msg: message })
+    res.fail(code, message)
     if (code > 10001 || req.method === 'OPTIONS') return
     errorLogCtrl.createErrorLog(req, code, message, stack)
 })

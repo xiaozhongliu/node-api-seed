@@ -1,3 +1,4 @@
+require('./extender')
 const toolset = require('./toolset')
 
 module.exports = {

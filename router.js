@@ -12,9 +12,7 @@ register('post', '/register', baseCtrl, 'register')
 
 
 // check health
-const monitor = (req, res) => {
-    res.json({ code: 1, msg: '服务运转正常' })
-}
+const monitor = (req, res) => res.success(undefined, 'sevice works well')
 router.get('/', monitor)
 router.get('/monitor', monitor)
 
