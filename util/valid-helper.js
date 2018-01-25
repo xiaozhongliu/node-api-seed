@@ -10,7 +10,7 @@ module.exports = {
      * @param {number} code   validation err code
      */
     assertEmptyOne(req, field, code) {
-        const assertMethod = req.method === 'GET' ? req.checkQuery : req.checkBody
+        const assertMethod = getMethod(req)
         assertMethod(field, `${code}@@请求参数${field}不能为空`).notEmpty()
     },
 
@@ -35,7 +35,10 @@ module.exports = {
      */
     assertType(req, field, code, type) {
         const assertMethod = getMethod(req)
-        const midRes = assertMethod(field, `${code}@@请求参数${field}的值${getFieldValue(req, field)}不是${type.name}类型`)
+        const midRes = assertMethod(
+            field,
+            `${code}@@请求参数${field}的值${getFieldValue(req, field)}不是${type.name}类型`
+        )
         midRes[type.func]()
     },
 }
