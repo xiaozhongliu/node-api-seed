@@ -12,7 +12,7 @@ module.exports = {
             appName: config.APP_NAME,
             errTitle: message,
             errCode: code,
-            errContent: stack,
+            errStack: stack,
             data: {
                 url: req.url,
                 method: req.method,

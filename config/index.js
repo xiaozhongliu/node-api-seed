@@ -1,17 +1,16 @@
-let config
 try {
     const env = process.env.NODE_ENV || 'test'
     console.log(`env is: ${env}`)
-    config = require('./base')
+    const config = require('./base')
     const customConfig = require(`./${env}`)
-    config = mergeDeep(config, customConfig)
+    module.exports = mergeDeep(config, customConfig)
 } catch (e) {
     console.log('error loading config: ', e)
     process.exit()
 }
 
 /**
- * helper methods
+ * helper methods (they should be here other than ..util namespace)
  */
 function mergeDeep(target, source) {
     const output = Object.assign({}, target)
@@ -19,7 +18,7 @@ function mergeDeep(target, source) {
         return output
     }
     Object.keys(source).forEach(key => {
-        if (isObject(source[key]) && target[key]) {
+        if (target[key] && isObject(source[key])) {
             output[key] = mergeDeep(target[key], source[key])
             return
         }
@@ -31,5 +30,3 @@ function mergeDeep(target, source) {
 function isObject(item) {
     return item && typeof item === 'object' && !Array.isArray(item)
 }
-
-module.exports = config

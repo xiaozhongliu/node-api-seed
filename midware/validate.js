@@ -1,16 +1,29 @@
 const config = require('../config')
 const validate = require('../util').validhelper
 
+const Type = {
+    String: { name: 'String', func: 'isString' },
+    Number: { name: 'Number', func: 'isNumeric' },
+    Decimal: { name: 'Decimal', func: 'isDecimal' },
+    Boolean: { name: 'Boolean', func: 'isBoolean' },
+    Url: { name: 'Url', func: 'isURL' },
+    Hash: { name: 'Hash', func: 'isHash' },
+    ObjectId: { name: 'ObjectId', func: 'isMongoId' },
+    UnixStamp: { name: 'UnixStamp', func: 'isUnixStamp' },
+    StringArray: { name: '[String]', func: 'isStringArray' },
+}
+
 module.exports = {
 
     /**
-     * validate common params on every api func
+     * validate common params on every api
      */
     common(req, res, next) {
         // no auth files or paths
         if (
             config.NO_AUTH_PATHS.includes(req.url) ||
-            config.NO_AUTH_REG.test(req.url)) {
+            config.NO_AUTH_REG.test(req.url)
+        ) {
             return next()
         }
 
@@ -42,18 +55,6 @@ module.exports = {
     },
 }
 
-const Type = {
-    String: { name: 'String', func: 'isString' },
-    Number: { name: 'Number', func: 'isNumeric' },
-    Decimal: { name: 'Decimal', func: 'isDecimal' },
-    Boolean: { name: 'Boolean', func: 'isBoolean' },
-    Url: { name: 'Url', func: 'isURL' },
-    Hash: { name: 'Hash', func: 'isHash' },
-    ObjectId: { name: 'ObjectId', func: 'isMongoId' },
-    UnixStamp: { name: 'UnixStamp', func: 'isUnixStamp' },
-    StringArray: { name: '[String]', func: 'isStringArray' },
-}
-
 function getEmptyErrorKey(field) {
     const firstLetterToUpper = field.slice(0, 1).toUpperCase()
     const otherLetters = field.slice(1)
@@ -70,7 +71,6 @@ function validateParams(req, next, fields) {
             validate.assertType(req, field, global.Message('CommonErr').code, type)
         }
     })
-
     handleResult(req, next)
 }
 

@@ -39,8 +39,8 @@ function co(asyncFunc) {
     return async function (req, res, next) {
         try {
             await asyncFunc(req, res, next)
-        } catch (err) {
-            next(err)
+        } catch (e) {
+            next(e)
         }
     }
 }

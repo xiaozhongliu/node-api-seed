@@ -5,13 +5,13 @@ module.exports = monitor({
     path: '/dashboard',
     spans: [{
         interval: 1,
-        retention: 60
+        retention: 60,
     }, {
         interval: 5,
-        retention: 60
+        retention: 60,
     }, {
         interval: 15,
-        retention: 60
+        retention: 60,
     }],
     chartVisibility: {
         cpu: true,

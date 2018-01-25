@@ -9,14 +9,15 @@ module.exports = {
      * login
      */
     async login(req, res, next) {
-        const { username, password } = req.body
-        let { redirectUrl } = req.body
+        let { username, password, redirectUrl } = req.body
 
         // user exists and username & password match
         const getRes = await User.findOne({ where: { username } })
-        if (!getRes ||
+        if (
+            !getRes ||
             getRes.username !== username ||
-            getRes.password !== hash(password + config.HASH_SECRET)) {
+            getRes.password !== hash(password + config.HASH_SECRET)
+        ) {
             return next(global.MessageErr('LoginFail'))
         }
 
@@ -64,13 +65,10 @@ module.exports = {
      * register
      */
     async register(req, res, next) {
-        let {
-            sysType, username, password, avatar
-        } = req.body
-        const getRes = await User.findOne({ where: { username } })
+        let { sysType, username, password, avatar } = req.body
 
         // user exists
-        if (getRes) {
+        if (await User.findOne({ where: { username } })) {
             return next(global.MessageErr('UserExist'))
         }
 

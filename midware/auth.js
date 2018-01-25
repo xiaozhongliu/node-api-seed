@@ -4,18 +4,16 @@ const config = require('../config')
 const HASHED_TOKEN = hash(config.REQUEST_TOKEN)
 
 module.exports = (req, res, next) => {
-    if (isNoAuthPath(req.path)) {
-        return next()
-    }
+    if (isNoAuthPath(req.path)) return next()
 
     const stamp = req.header('ts')
     const token = req.header('token')
 
-    if (!token || !stamp || !checkToken(token, stamp)) {
-        return next(global.MessageErr('AuthFail'))
+    if (token && stamp && checkToken(token, stamp)) {
+        return next()
     }
 
-    next()
+    next(global.MessageErr('AuthFail'))
 }
 
 /**
