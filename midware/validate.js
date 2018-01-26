@@ -34,24 +34,33 @@ module.exports = {
     /**
      * validate api: login
      */
-    login(req, res, next) {
-        validateParams(req, next, [
-            ['sysType', Type.Number, true],
-            ['username', Type.String, true],
-            ['password', Type.String, true],
-        ])
-    },
+    login: [
+        ['sysType', Type.Number, true],
+        ['username', Type.String, true],
+        ['password', Type.String, true],
+    ],
 
     /**
      * validate api: register
      */
-    register(req, res, next) {
-        validateParams(req, next, [
-            ['sysType', Type.Number, true],
-            ['username', Type.String, true],
-            ['password', Type.String, true],
-            ['avatar', Type.String, false],
-        ])
+    register: [
+        ['sysType', Type.Number, true],
+        ['username', Type.String, true],
+        ['password', Type.String, true],
+        ['avatar', Type.String, false],
+    ],
+
+    validateParams(req, next, fields) {
+        fields.forEach(([field, type, required]) => {
+            if (required) {
+                const key = getEmptyErrorKey(field)
+                validate.assertEmptyOne(req, field, global.Message(key).code)
+            }
+            if (req.query[field] || req.body[field]) {
+                validate.assertType(req, field, global.Message('CommonErr').code, type)
+            }
+        })
+        handleResult(req, next)
     },
 }
 
@@ -61,27 +70,13 @@ function getEmptyErrorKey(field) {
     return `${firstLetterToUpper}${otherLetters}Empty`
 }
 
-function validateParams(req, next, fields) {
-    fields.forEach(([field, type, required]) => {
-        if (required) {
-            const key = getEmptyErrorKey(field)
-            validate.assertEmptyOne(req, field, global.Message(key).code)
-        }
-        if (req.query[field] || req.body[field]) {
-            validate.assertType(req, field, global.Message('CommonErr').code, type)
-        }
-    })
-    handleResult(req, next)
-}
-
 function handleResult(req, next) {
     req.getValidationResult().then(result => {
-        if (!result.isEmpty()) {
-            const arr = result.array()[0].msg.split('@@')
-            const err = new Error(arr[1])
-            err.code = parseInt(arr[0], 10)
-            return next(err)
-        }
-        next()
+        if (result.isEmpty()) return next()
+
+        const arr = result.array()[0].msg.split('@@')
+        const err = new Error(arr[1])
+        err.code = parseInt(arr[0], 10)
+        return next(err)
     })
 }

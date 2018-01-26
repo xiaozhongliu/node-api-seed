@@ -25,8 +25,11 @@ router.get('/monitor', monitor)
  * @param {string} func      ctrl func name
  */
 function register(method, path, ctrl, func) {
-    const validFunc = validate[func]
-    if (validFunc) {
+    const fields = validate[func]
+    if (fields) {
+        const validFunc = (req, res, next) => {
+            validate.validateParams(req, next, fields)
+        }
         return router[method](path, validFunc, co(ctrl[func]))
     }
     return router[method](path, co(ctrl[func]))
@@ -36,7 +39,7 @@ function register(method, path, ctrl, func) {
  * wrap all ctrl funcs to handle errors
  */
 function co(asyncFunc) {
-    return async function (req, res, next) {
+    return async (req, res, next) => {
         try {
             await asyncFunc(req, res, next)
         } catch (e) {

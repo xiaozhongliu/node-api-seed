@@ -6,16 +6,14 @@ module.exports = schema => {
         page = 1,
         sort = {}
     }) {
-        const thisSchema = this
-
         const output = {
             page,
             total: 0,
             list: null,
         }
 
-        const countResults = function (callback) {
-            thisSchema.count(filters, (err, count) => {
+        const countResults = callback => {
+            this.count(filters, (err, count) => {
                 if (err) return callback(err)
 
                 output.total = count
@@ -23,8 +21,8 @@ module.exports = schema => {
             })
         }
 
-        const getResults = function (callback) {
-            thisSchema.find(filters, keys)
+        const getResults = callback => {
+            this.find(filters, keys)
                 .skip((page - 1) * limit)
                 .limit(limit)
                 .sort(sort)
