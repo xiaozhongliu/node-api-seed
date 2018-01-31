@@ -7,8 +7,26 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Api",
             "program": "${workspaceFolder}/app.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest All",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+            "args": [
+                "--runInBand"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest File",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+            "args": [
+                "${file}"
+            ]
         }
     ]
 }

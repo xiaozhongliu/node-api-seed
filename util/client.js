@@ -2,23 +2,42 @@
  * HTTP client on the basis of axios
  ****************************************************************** */
 const axios = require('axios')
-const { hash } = require('./toolset')
+
+axios.interceptors.response.use(({ data }) => data)
 
 module.exports = {
 
-    async post(url, reqToken, data) {
-        const ts = Date.now()
-        const token = hash(`${reqToken}${ts}`)
-        await axios.post(
+    GET(url, params, headers) {
+        return axios.get(
             url,
-            data,
             {
-                headers: {
-                    ts,
-                    token,
-                    platform: 'WEB',
-                }
+                headers,
+                params,
             }
         )
     },
+
+    POST(url, data, headers) {
+        return axios.post(
+            url,
+            data,
+            { headers }
+        )
+    },
+
+    PUT(url, data, headers) {
+        return axios.put(
+            url,
+            data,
+            { headers }
+        )
+    },
+
+    DELETE(url, headers) {
+        return axios.delete(
+            url,
+            { headers }
+        )
+    },
+
 }

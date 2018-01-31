@@ -7,6 +7,7 @@
   "license": "ISC",
   "scripts": {
     "start": "node app",
+    "test": "jest --verbose --forceExit",
     "pm2start": "cnpm i --production && pm2 start pm2.config.js",
     "pm2startqa": "cnpm i --production && pm2 start pm2.config.js --env qa",
     "pm2starttest": "cnpm i --production && pm2 start pm2.config.js --env test",
@@ -38,6 +39,12 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "jest": "^22.1.4"
+  },
+  "jest": {
+    "testMatch": [
+      "**/test/*.test.js?(x)"
+    ]
   }
 }
