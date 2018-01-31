@@ -9,7 +9,7 @@ console.log(`is primary endpoint: ${isPrimary || false}`)
 
 const apps = [
     {
-        name: config.APP_NAME,
+        name: config.API_NAME,
         script: './app.js',
         instances: process.argv[5] ? 1 : MAX_INS,
         exec_mode: 'cluster',

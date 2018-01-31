@@ -9,7 +9,7 @@ module.exports = {
     createErrorLog(req, code, message, stack) {
         const errorLog = {
             endType: 'backend',
-            appName: config.APP_NAME,
+            appName: config.API_NAME,
             errTitle: message,
             errCode: code,
             errStack: stack,
@@ -28,7 +28,7 @@ module.exports = {
             errorLog.data.body = req.body
         }
 
-        mailer.alarm(config.APP_NAME, JSON.stringify(errorLog))
+        mailer.alarm(config.API_NAME, JSON.stringify(errorLog))
 
         // logic to save errors into db
     },

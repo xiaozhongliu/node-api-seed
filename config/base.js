@@ -1,6 +1,6 @@
 module.exports = {
 
-    APP_NAME: 'node-api-seed',
+    API_NAME: 'node-api-seed',
     API_PORT: 8001,
 
     // security

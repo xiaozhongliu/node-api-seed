@@ -28,8 +28,8 @@ Elaborate api request log into files.
 Flexible declarative request validation.  
 Request log online view behind http auth.  
 Server status monitor dashboard behind http auth.  
-Centralized system level config & messages management.  
 Ready made api samples with jwt and latest js features.  
+Centralized system level config & messages management.  
 Elaborate api test: test samples & ready made debug config.  
 Reasonable multi-env config merging mechanism.  
 Definite DRY, SRP, AOP, ES6/ES7, OCD, etc.
