@@ -1,5 +1,6 @@
 # node-api-seed
-A node api seed project.
+A node api seed project.  
+Wiki: https://github.com/xiaozhongliu/node-api-seed/wiki
 
 ### Techs involved:
 
