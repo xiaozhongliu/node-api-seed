@@ -34,7 +34,7 @@ module.exports = logPath => {
         default: { appenders: ['dateFile'], level: 'info' }
     }
 
-    // no prod logs also output to onsole
+    // non prod logs also output to console
     if (config.DEBUG) {
         appenders.console = { type: 'console', layout }
         categories.default.appenders.push('console')
