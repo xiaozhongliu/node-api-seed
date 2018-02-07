@@ -1,4 +1,7 @@
-# node-api-seed
+# node-api-seed  
+[![](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/xiaozhongliu/node-api-seed/blob/master/LICENSE)
+[![](https://img.shields.io/badge/language-node.js-green.svg)]()
+[![](https://img.shields.io/github/stars/xiaozhongliu/node-api-seed.svg?style=flat)]()  
 A node api seed project.  
 Wiki: https://github.com/xiaozhongliu/node-api-seed/wiki
 
