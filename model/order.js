@@ -56,14 +56,8 @@ const Order = new Schema({
     // 取消原因
     cancelReason: String,
 
-    // 创建时间(时间戳)
-    createdAt: { type: Number, default: Date.now },
-
-    // 更新时间(时间戳)
-    updatedAt: { type: Number, default: Date.now },
 }, { versionKey: false })
 
 Order.index({ username: 1 })
-Order.plugin(require('./plugin/pagedFind'))
 
 module.exports = mongoose.model('Order', Order)

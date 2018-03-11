@@ -1,5 +1,5 @@
 /* ******************************************************************
- * HTTP client on the basis of axios
+ * http client on the basis of axios
  ****************************************************************** */
 const axios = require('axios')
 

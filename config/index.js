@@ -1,5 +1,5 @@
 try {
-    const env = process.env.NODE_ENV || 'test'
+    const env = process.env.NODE_ENV || 'dev'
     console.log(`env is: ${env}`)
     const config = require('./base')
     const customConfig = require(`./${env}`)

@@ -28,6 +28,7 @@
     "log4js": "^2.5.2",
     "moment": "^2.20.1",
     "mongoose": "^5.0.1",
+    "mongoose-paginate": "^5.0.3",
     "nodemailer": "^4.4.2",
     "pg": "^7.4.1",
     "redis": "^2.8.0",
