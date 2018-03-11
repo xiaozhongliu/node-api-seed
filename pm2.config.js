@@ -18,17 +18,17 @@ const apps = [
         log_date_format: 'YYYY-MM-DD HH:mm:ss ',
         combine_logs: true,
         env: {
-            NODE_ENV: 'prod'
+            NODE_ENV: 'prod',
         },
         env_qa: {
-            NODE_ENV: 'qa'
+            NODE_ENV: 'qa',
         },
         env_test: {
-            NODE_ENV: 'test'
+            NODE_ENV: 'test',
         },
         env_dev: {
-            NODE_ENV: 'dev'
-        }
+            NODE_ENV: 'dev',
+        },
     },
 ]
 

@@ -8,7 +8,9 @@ const Type = {
     Boolean: { name: 'Boolean', func: 'isBoolean' },
     Url: { name: 'Url', func: 'isURL' },
     Hash: { name: 'Hash', func: 'isHash' },
+    Phone: { name: 'Phone', func: 'isPhone' },
     ObjectId: { name: 'ObjectId', func: 'isMongoId' },
+    Stamp: { name: 'Stamp', func: 'isStamp' },
     UnixStamp: { name: 'UnixStamp', func: 'isUnixStamp' },
     StringArray: { name: '[String]', func: 'isStringArray' },
 }

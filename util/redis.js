@@ -24,5 +24,5 @@ module.exports = Redis.createClient({
         }
         // reconnect after
         return Math.min(options.attempt * 100, 5000)
-    }
+    },
 })

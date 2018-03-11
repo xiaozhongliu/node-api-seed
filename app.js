@@ -8,6 +8,7 @@ const {
     httplog,
     cors,
     auth,
+    queryParser,
     validate,
 } = require('./midware')
 const { customValidators } = require('./util')
@@ -18,6 +19,7 @@ const config = require('./config')
 const app = express()
 app.get('*', filter)
 app.use(monitor)
+app.use(queryParser)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(expressValidator({ customValidators }))

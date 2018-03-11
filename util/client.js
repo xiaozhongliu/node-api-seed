@@ -13,7 +13,7 @@ module.exports = {
             {
                 headers,
                 params,
-            }
+            },
         )
     },
 
@@ -21,7 +21,7 @@ module.exports = {
         return axios.post(
             url,
             data,
-            { headers }
+            { headers },
         )
     },
 
@@ -29,14 +29,14 @@ module.exports = {
         return axios.put(
             url,
             data,
-            { headers }
+            { headers },
         )
     },
 
     DELETE(url, headers) {
         return axios.delete(
             url,
-            { headers }
+            { headers },
         )
     },
 

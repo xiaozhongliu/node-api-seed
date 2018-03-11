@@ -12,6 +12,14 @@ module.exports = {
         return /^[a-f0-9]{32}$/i.test(value)
     },
 
+    isPhone(value) {
+        return /^1[3|4|5|8|7][0-9]\d{8}$/.test(value)
+    },
+
+    isStamp(value) {
+        return /^[0-9]{13}$/.test(value)
+    },
+
     isUnixStamp(value) {
         return /^[0-9]{10}$/.test(value)
     },

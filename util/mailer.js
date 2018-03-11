@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: MAILER.USER,
         pass: MAILER.PASS,
-    }
+    },
 })
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
             from: `"${MAILER.NICK_NAME}" <${MAILER.USER}>`,
             to: MAILER.RECEIVERS.join(','),
             subject: `[${getEnv()}]应用[${appName}]出错`,
-            html: entireBody
+            html: entireBody,
         }
         transporter.sendMail(mailOptions, (err, info) => { // eslint-disable-line
             err && console.log('MAIL ALARM FAIL:   ', err)

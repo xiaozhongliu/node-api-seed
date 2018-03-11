@@ -12,7 +12,7 @@ module.exports = {
         return promisify(jwt.sign)(
             payload,
             config.JWT_SECRET,
-            { expiresIn: config.JWT_TOKEN_TIMEOUT }
+            { expiresIn: config.JWT_TOKEN_TIMEOUT },
         )
     },
 
@@ -23,7 +23,7 @@ module.exports = {
     async verify(token) {
         const payload = await promisify(jwt.verify)(
             token,
-            config.JWT_SECRET
+            config.JWT_SECRET,
         )
         delete payload.exp
         delete payload.iat

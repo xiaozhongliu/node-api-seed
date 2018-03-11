@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
 
-const { Schema } = mongoose
-const { ObjectId } = Schema.Types
+const { ObjectId } = mongoose.Schema.Types
 
 /**
  * 订单
  */
-const Order = new Schema({
+const Order = new mongoose.Schema({
 
     // 订单号
     orderNO: Number,

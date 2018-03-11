@@ -15,7 +15,7 @@ describe('base ctrl tests', () => {
         const data = {
             sysType: 1,
             username: 'unittest',
-            password: 'e10adc3949ba59abbe56e057f20f883e'
+            password: 'e10adc3949ba59abbe56e057f20f883e',
         }
 
         let currentData = Object.assign({}, data)
@@ -38,7 +38,7 @@ describe('base ctrl tests', () => {
         const data = {
             sysType: 1,
             username: 'unittest',
-            password: 'e10adc3949ba59abbe56e057f20f883e'
+            password: 'e10adc3949ba59abbe56e057f20f883e',
         }
 
         const res = await client.POST(`${host}/login`, data)
@@ -50,7 +50,7 @@ describe('base ctrl tests', () => {
         const data = {
             sysType: 1,
             username: 'unittest',
-            password: 'invalid password'
+            password: 'invalid password',
         }
 
         const res = await client.POST(`${host}/login`, data)

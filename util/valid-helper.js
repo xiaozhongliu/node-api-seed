@@ -37,7 +37,7 @@ module.exports = {
         const assertMethod = getMethod(req)
         const midRes = assertMethod(
             field,
-            `${code}@@请求参数${field}的值${getFieldValue(req, field)}不是${type.name}类型`
+            `${code}@@请求参数${field}的值${getFieldValue(req, field)}不是${type.name}类型`,
         )
         midRes[type.func]()
     },

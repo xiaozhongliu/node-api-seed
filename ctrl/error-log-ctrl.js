@@ -22,7 +22,7 @@ module.exports = {
                     clientip: req.header('http_x_forwarded_for'),
                 },
             },
-            username: req.body.username
+            username: req.body.username,
         }
         if (req.method !== 'GET') {
             errorLog.data.body = req.body

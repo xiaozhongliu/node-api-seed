@@ -20,5 +20,5 @@ module.exports = monitor({
         responseTime: true,
         rps: true,
         statusCodes: true,
-    }
+    },
 })

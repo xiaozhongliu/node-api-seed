@@ -18,5 +18,5 @@ module.exports = new Sequelize(
             min: 0,
             idle: 10000,
         },
-    }
+    },
 )

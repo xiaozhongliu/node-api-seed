@@ -57,7 +57,7 @@ mongoose.plugin((schema) => {
 
 mongoose.connect(MONGO, {
     promiseLibrary: global.Promise,
-    poolSize: 20
+    poolSize: 20,
 }, err => {
     err && console.log(err)
 })

@@ -17,8 +17,8 @@ module.exports = logPath => {
         tokens: {
             time() {
                 return moment().format('YYYY-MM-DD HH:mm:ss')
-            }
-        }
+            },
+        },
     }
     const appenders = {
         dateFile: {
@@ -27,11 +27,11 @@ module.exports = logPath => {
             pattern: 'yyyyMMdd.log',
             alwaysIncludePattern: true,
             filename: logPath,
-            layout
-        }
+            layout,
+        },
     }
     const categories = {
-        default: { appenders: ['dateFile'], level: 'info' }
+        default: { appenders: ['dateFile'], level: 'info' },
     }
 
     // non prod logs also output to console
