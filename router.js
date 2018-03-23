@@ -6,9 +6,9 @@ const {
 
 
 // base
-register('post', '/login', baseCtrl, 'login')
-register('get', '/verify', baseCtrl, 'verify')
-register('post', '/register', baseCtrl, 'register')
+register('post', '/login', baseCtrl.login)
+register('get', '/verify', baseCtrl.verify)
+register('post', '/register', baseCtrl.register)
 
 
 // check health
@@ -21,18 +21,18 @@ router.get('/monitor', monitor)
  * register ctrl and validate(if any) midware funcs to routes
  * @param {string} method    http method
  * @param {string} path      route path
- * @param {object} ctrl      ctrl namespace
- * @param {string} func      ctrl func name
+ * @param {function} func      ctrl func
  */
-function register(method, path, ctrl, func) {
-    const fields = validate[func]
+function register(method, path, func) {
+    const funcName = func.name
+    const fields = validate[funcName]
     if (fields) {
         const validFunc = (req, res, next) => {
             validate.validateParams(req, next, fields)
         }
-        return router[method](path, validFunc, co(ctrl[func]))
+        return router[method](path, validFunc, co(func))
     }
-    return router[method](path, co(ctrl[func]))
+    return router[method](path, co(func))
 }
 
 /**
