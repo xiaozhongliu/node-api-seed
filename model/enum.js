@@ -12,7 +12,7 @@ module.exports = {
      */
     getEnumByValue(enumObj, value) {
         let target
-        value = Number(value)
+        value = parseInt(value)
 
         Object.keys(enumObj).some(key => {
             const current = enumObj[key]
@@ -26,7 +26,7 @@ module.exports = {
 
     getTextByValue(enumObj, value) {
         let target
-        value = Number(value)
+        value = parseInt(value)
 
         Object.keys(enumObj).some(key => {
             if (enumObj[key].value === value) {
@@ -37,9 +37,20 @@ module.exports = {
         return target
     },
 
+    getValueByText(enumObj, text) {
+        let target
+        Object.keys(enumObj).some(key => {
+            if (enumObj[key].text === text) {
+                target = enumObj[key].value
+                return true
+            }
+        })
+        return target
+    },
+
     getNameByValue(enumObj, value) {
         let target
-        value = Number(value)
+        value = parseInt(value)
 
         Object.keys(enumObj).some(key => {
             if (enumObj[key].value === value) {

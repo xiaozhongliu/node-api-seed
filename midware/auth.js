@@ -1,36 +1,36 @@
-const { hash } = require('../util')
 const config = require('../config')
+const { jwtSvc } = require('../service')
 
-const HASHED_TOKEN = hash(config.REQUEST_TOKEN)
-
-module.exports = (req, res, next) => {
-    if (isNoAuthPath(req.path)) return next()
-
-    const stamp = req.header('ts')
-    const token = req.header('token')
-
-    if (token && stamp && checkToken(token, stamp)) {
+module.exports = async (req, res, next) => {
+    if (isNoAuthPath(req.path) || req.method === 'OPTIONS') {
         return next()
     }
 
-    next(global.MessageErr('AuthFail'))
+    const { authorization } = req.headers
+    if (!authorization) {
+        return next(global.MessageErr('AuthFail'))
+    }
+    const jwt = authorization.substr(7)
+
+    let payload
+    try {
+        payload = await jwtSvc.verify(jwt)
+    } catch (e) {
+        return next(global.MessageErr('AuthFail'))
+    }
+    if (!payload) {
+        return next(global.MessageErr('AuthFail'))
+    }
+
+    req.auth = payload
+    next()
 }
 
 /**
  * no auth files or paths
- * @param   {string} url    req url
+ * @param   {string} path    req url
  * @returns {boolean}
  */
-function isNoAuthPath(url) {
-    return config.NO_AUTH_PATHS.includes(url) || config.NO_AUTH_REG.test(url)
-}
-
-/**
- * check if the token hashed on server side matches the token from client
- * @param   {string} token  token from client
- * @param   {string} stamp  ts from client
- * @returns {boolean}
- */
-function checkToken(token, stamp) {
-    return hash(HASHED_TOKEN + stamp) === token
+function isNoAuthPath(path) {
+    return config.NO_AUTH_PATHS.includes(path) || config.NO_AUTH_REG.test(path)
 }

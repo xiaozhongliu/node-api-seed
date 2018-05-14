@@ -10,7 +10,7 @@ module.exports = {
      * @param {number} code   validation err code
      */
     assertEmptyOne(req, field, code) {
-        const assertMethod = getMethod(req)
+        const assertMethod = getMethod(req, field)
         assertMethod(field, `${code}@@请求参数${field}不能为空`).notEmpty()
     },
 
@@ -34,7 +34,7 @@ module.exports = {
      * @param {object} type     field type
      */
     assertType(req, field, code, type) {
-        const assertMethod = getMethod(req)
+        const assertMethod = getMethod(req, field)
         const midRes = assertMethod(
             field,
             `${code}@@请求参数${field}的值${getFieldValue(req, field)}不是${type.name}类型`,
@@ -43,12 +43,18 @@ module.exports = {
     },
 }
 
-function getMethod(req) {
-    return req.method === 'GET' ? req.checkQuery : req.checkBody
+function getMethod(req, field) {
+    if (req.method === 'GET' && req.query[field]) return req.checkQuery
+    else if (req.method !== 'GET' && req.body[field]) return req.checkBody
+    return req.checkParams
 }
 
 function getFieldValue(req, field) {
-    let value = req.method === 'GET' ? req.query[field] : req.body[field]
+    let value
+    if (req.method === 'GET' && req.query[field]) value = req.query[field]
+    else if (req.method !== 'GET' && req.body[field]) value = req.body[field]
+    else value = req.params[field]
+
     if (typeof value === 'object') {
         value = JSON.stringify(value)
     }

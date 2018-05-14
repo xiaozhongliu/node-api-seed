@@ -1,5 +1,4 @@
-const config = require('../config')
-const validate = require('../util').validhelper
+const { validhelper } = require('../util')
 
 const Type = {
     String: { name: 'String', func: 'isString' },
@@ -9,6 +8,7 @@ const Type = {
     Url: { name: 'Url', func: 'isURL' },
     Hash: { name: 'Hash', func: 'isHash' },
     Phone: { name: 'Phone', func: 'isPhone' },
+    IdCardNO: { name: 'IdCardNO', func: 'isIdCardNO' },
     ObjectId: { name: 'ObjectId', func: 'isMongoId' },
     Stamp: { name: 'Stamp', func: 'isStamp' },
     UnixStamp: { name: 'UnixStamp', func: 'isUnixStamp' },
@@ -16,22 +16,6 @@ const Type = {
 }
 
 module.exports = {
-
-    /**
-     * validate common params on every api
-     */
-    common(req, res, next) {
-        // no auth files or paths
-        if (
-            config.NO_AUTH_PATHS.includes(req.url) ||
-            config.NO_AUTH_REG.test(req.url)
-        ) {
-            return next()
-        }
-
-        validate.assertEmptyFromHeader(req, ['ts', 'token'])
-        handleResult(req, next)
-    },
 
     /**
      * validate api: login
@@ -52,14 +36,17 @@ module.exports = {
         ['avatar', Type.String, false],
     ],
 
+    /**
+     * validation helper
+     */
     validateParams(req, next, fields) {
         fields.forEach(([field, type, required]) => {
             if (required) {
                 const key = getEmptyErrorKey(field)
-                validate.assertEmptyOne(req, field, global.Message(key).code)
+                validhelper.assertEmptyOne(req, field, global.Message(key).code)
             }
             if (req.query[field] || req.body[field]) {
-                validate.assertType(req, field, global.Message('CommonErr').code, type)
+                validhelper.assertType(req, field, global.Message('CommonErr').code, type)
             }
         })
         handleResult(req, next)

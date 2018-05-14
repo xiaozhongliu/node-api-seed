@@ -41,15 +41,24 @@ mongoose.plugin((schema) => {
     }
 
     /**
-     * paged find docs
+     * paged query
+     * @param {object} query    query conditions
+     * @param {number} pageNo   page number
+     * @param {number} pageSize page size
+     * @param {string} projection   fields projection
+     * @param {object} populate     populate referenced docs. eg: { path: 'userId', select: '-_id name' }
      */
-    schema.statics.page = function (query, pageNo, pageSize) {
+    schema.statics.page = function (query, pageNo, pageSize, projection, populate) {
         return this.paginate(
             query,
             {
+                select: projection,
+                populate,
                 page: pageNo || 1,
                 limit: pageSize || 10,
-                sort: '-updatedAt',
+                sort: '-createdAt',
+                lean: true,
+                leanWithId: false,
             },
         )
     }
@@ -59,7 +68,10 @@ mongoose.connect(MONGO, {
     promiseLibrary: global.Promise,
     poolSize: 20,
 }, err => {
-    err && console.log(err)
+    if (err) {
+        console.log(err)
+        process.exit(1)
+    }
 })
 
 module.exports = mongoose

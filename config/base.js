@@ -4,12 +4,9 @@ module.exports = {
     API_PORT: 8001,
 
     // security
-    REQUEST_TOKEN: 'yMtpwu44Mf',
     HASH_SECRET: 'vmHOX8ALwx',
     JWT_SECRET: 's!v^%W.Y80Mp$g$',
-
-    // jwt token expires in 10 days
-    JWT_TOKEN_TIMEOUT: 864000,
+    JWT_TOKEN_TIMEOUT: 864000, // 10 days
 
     // no auth stuffs
     NO_AUTH_REG: /\.log$|\.ico$|^\/socket.io/,

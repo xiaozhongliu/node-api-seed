@@ -25,8 +25,6 @@ module.exports = {
             token,
             config.JWT_SECRET,
         )
-        delete payload.exp
-        delete payload.iat
         return payload
     },
 }

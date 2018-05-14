@@ -17,8 +17,6 @@ module.exports = {
                 url: req.url,
                 method: req.method,
                 header: {
-                    ts: req.header('ts'),
-                    token: req.header('token'),
                     clientip: req.header('http_x_forwarded_for'),
                 },
             },

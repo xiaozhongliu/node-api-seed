@@ -3,10 +3,13 @@
  ****************************************************************** */
 const express = require('express')
 
-express.response.success = function (data, msg = 'success') {
-    this.json({ code: 1, msg, data })
-}
+Object.assign(express.response, {
 
-express.response.fail = function (code = -1, msg = 'fail') {
-    this.json({ code, msg })
-}
+    success(data, msg = 'success') {
+        this.json({ code: 1, msg, data })
+    },
+
+    fail(code = -1, msg = 'fail') {
+        this.json({ code, msg })
+    },
+})

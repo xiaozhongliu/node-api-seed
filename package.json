@@ -4,9 +4,9 @@
   "description": "A node api seed project",
   "main": "app.js",
   "author": "xiaozhong",
-  "license": "ISC",
+  "private": true,
   "scripts": {
-    "start": "node app",
+    "start": "node app.js",
     "test": "jest --verbose --forceExit",
     "pm2start": "cnpm i --production && pm2 start pm2.config.js",
     "pm2startqa": "cnpm i --production && pm2 start pm2.config.js --env qa",
@@ -18,7 +18,7 @@
     "pm2delete": "pm2 delete pm2.config.js"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-status-monitor": "^1.0.1",

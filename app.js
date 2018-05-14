@@ -5,11 +5,10 @@ const expressValidator = require('express-validator')
 const {
     filter,
     monitor,
+    queryParser,
     httplog,
     cors,
     auth,
-    queryParser,
-    validate,
 } = require('./midware')
 const { customValidators } = require('./util')
 const { errorLogCtrl } = require('./ctrl')
@@ -21,13 +20,12 @@ app.get('*', filter)
 app.use(monitor)
 app.use(queryParser)
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(expressValidator({ customValidators }))
 
 app.use(httplog)
 app.use(cors)
 app.use(auth)
-app.use(validate.common)
 app.use(router)
 
 app.use((req, res, next) => {

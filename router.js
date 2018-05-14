@@ -19,20 +19,21 @@ router.get('/monitor', monitor)
 
 /**
  * register ctrl and validate(if any) midware funcs to routes
- * @param {string} method    http method
- * @param {string} path      route path
- * @param {function} func      ctrl func
+ * @param {string} method   http method
+ * @param {string} path     route path
+ * @param {func} func       ctrl func
+ * @param {array} midwares  route level midware functions
  */
-function register(method, path, func) {
+function register(method, path, func, ...midwares) {
     const funcName = func.name
     const fields = validate[funcName]
     if (fields) {
         const validFunc = (req, res, next) => {
             validate.validateParams(req, next, fields)
         }
-        return router[method](path, validFunc, co(func))
+        return router[method](path, validFunc, ...midwares, co(func))
     }
-    return router[method](path, co(func))
+    return router[method](path, ...midwares, co(func))
 }
 
 /**

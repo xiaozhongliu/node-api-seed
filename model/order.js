@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Schema.Types
 
 /**
- * 订单
+ * 订单表
  */
 const Order = new mongoose.Schema({
 

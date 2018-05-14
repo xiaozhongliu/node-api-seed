@@ -27,7 +27,6 @@ Wiki: https://github.com/xiaozhongliu/node-api-seed/wiki
 |proc mana  |[pm2](http://pm2.keymetrics.io/)                                 |
 
 ### Other features offering:
-Api access control via ts & token.  
 Elaborate api request log into files.  
 Flexible declarative request validation.  
 Request log online view behind http auth.  

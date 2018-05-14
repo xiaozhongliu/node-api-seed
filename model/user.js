@@ -2,7 +2,7 @@ const { postgres } = require('../util')
 const { INTEGER, STRING } = require('sequelize')
 
 /**
- * 用户
+ * 用户表
  */
 const User = postgres.define('user', {
 
