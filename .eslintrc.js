@@ -19,6 +19,7 @@ module.exports = {
         'no-extend-native': 0,
         'no-continue': 0,
         'no-lonely-if': 0,
+        'no-mixed-operators': 0,
         'no-multi-spaces': 0,
         'no-new': 0,
         'no-param-reassign': 0,

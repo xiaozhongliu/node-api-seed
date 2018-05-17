@@ -21,8 +21,8 @@ router.get('/monitor', monitor)
  * register ctrl and validate(if any) midware funcs to routes
  * @param {string} method   http method
  * @param {string} path     route path
- * @param {func} func       ctrl func
- * @param {array} midwares  route level midware functions
+ * @param {function} func   ctrl func
+ * @param {...function} midwares route level midware functions
  */
 function register(method, path, func, ...midwares) {
     const funcName = func.name
@@ -38,11 +38,12 @@ function register(method, path, func, ...midwares) {
 
 /**
  * wrap all ctrl funcs to handle errors
+ * @param {function} ctrl   ctrl function
  */
-function co(asyncFunc) {
+function co(ctrl) {
     return async (req, res, next) => {
         try {
-            await asyncFunc(req, res, next)
+            await ctrl(req, res, next)
         } catch (e) {
             next(e)
         }

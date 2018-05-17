@@ -20,7 +20,7 @@ module.exports = Redis.createClient({
         }
         if (options.attempt > 10) {
             // end reconnecting with built in error
-            return undefined
+            return new Error('Retry count exhausted')
         }
         // reconnect after
         return Math.min(options.attempt * 100, 5000)

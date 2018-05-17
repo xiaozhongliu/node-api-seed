@@ -20,17 +20,17 @@ describe('base ctrl tests', () => {
 
         let currentData = Object.assign({}, data)
         delete currentData.sysType
-        let res = await client.POST(`${host}/login`, currentData)
+        let res = await client.post(`${host}/login`, currentData)
         expect(res.code).toBe(message.SysTypeEmpty.code)
 
         currentData = Object.assign({}, data)
         delete currentData.username
-        res = await client.POST(`${host}/login`, currentData)
+        res = await client.post(`${host}/login`, currentData)
         expect(res.code).toBe(message.UsernameEmpty.code)
 
         currentData = Object.assign({}, data)
         delete currentData.password
-        res = await client.POST(`${host}/login`, currentData)
+        res = await client.post(`${host}/login`, currentData)
         expect(res.code).toBe(message.PasswordEmpty.code)
     })
 
@@ -41,7 +41,7 @@ describe('base ctrl tests', () => {
             password: 'e10adc3949ba59abbe56e057f20f883e',
         }
 
-        const res = await client.POST(`${host}/login`, data)
+        const res = await client.post(`${host}/login`, data)
         expect(res.code).toBe(1)
         expect(res.data.username).toBe('unittest')
     })
@@ -53,7 +53,7 @@ describe('base ctrl tests', () => {
             password: 'invalid password',
         }
 
-        const res = await client.POST(`${host}/login`, data)
+        const res = await client.post(`${host}/login`, data)
         expect(res.code).toBe(message.LoginFail.code)
     })
 })

@@ -8,7 +8,8 @@ const fs = require('fs')
 const log4js = require('log4js')
 const config = require('../config')
 const moment = require('moment')
-require('moment/locale/zh-cn')
+
+moment.locale('zh-cn')
 
 module.exports = logPath => {
     const layout = {

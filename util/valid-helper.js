@@ -7,7 +7,7 @@ module.exports = {
      * check if a field is empty
      * @param {object} req    request obj
      * @param {string} field  target field
-     * @param {number} code   validation err code
+     * @param {number} code   error code
      */
     assertEmptyOne(req, field, code) {
         const assertMethod = getMethod(req, field)

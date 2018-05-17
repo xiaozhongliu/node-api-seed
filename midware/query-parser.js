@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
     for (const field of Object.keys(query)) {
         // parse integer
         if (/^[-+]?[0-9]+$/.test(query[field])) {
-            query[field] = parseInt(query[field], 10)
+            query[field] = parseInt(query[field])
             continue
         }
 

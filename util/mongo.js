@@ -67,11 +67,6 @@ mongoose.plugin((schema) => {
 mongoose.connect(MONGO, {
     promiseLibrary: global.Promise,
     poolSize: 20,
-}, err => {
-    if (err) {
-        console.log(err)
-        process.exit(1)
-    }
 })
 
 module.exports = mongoose
