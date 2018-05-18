@@ -3,8 +3,13 @@
  ****************************************************************** */
 const crypto = require('crypto')
 const moment = require('moment')
+const xml2js = require('xml2js')
+const { promisify } = require('util')
 
 moment.locale('zh-cn')
+const builder = new xml2js.Builder()
+const parser = new xml2js.Parser({ explicitArray: false, explicitRoot: false, trim: true })
+const parseString = promisify(parser.parseString).bind(parser)
 
 module.exports = {
 
@@ -53,5 +58,21 @@ module.exports = {
     amend(amount, precision = 2) {
         const factor = Math.pow(10, precision)
         return Math.round(amount * factor) / factor
+    },
+
+    /**
+     * parse object to xml string
+     * @param {object} obj  original object
+     */
+    buildXml(obj) {
+        return builder.buildObject(obj)
+    },
+
+    /**
+     * parse xml string to object
+     * @param {string} xml  original xml string
+     */
+    async parseXml(xml) {
+        return parseString(xml)
     },
 }

@@ -8,7 +8,7 @@ module.exports = {
     /**
      * login
      */
-    async login(req, res, next) {
+    async login(req, res) {
         let { username, password, redirectUrl } = req.body
 
         // user exists and username & password match
@@ -18,7 +18,7 @@ module.exports = {
             getRes.username !== username ||
             getRes.password !== hash(password + config.HASH_SECRET)
         ) {
-            return next(global.MessageErr('LoginFail'))
+            throw global.MessageErr('LoginFail')
         }
 
         // create jwt token
@@ -40,10 +40,10 @@ module.exports = {
     /**
      * verify jwt token
      */
-    async verify(req, res, next) {
+    async verify(req, res) {
         const { authorization } = req.headers
         if (!authorization) {
-            return next(global.MessageErr('VerifyFail'))
+            throw global.MessageErr('VerifyFail')
         }
         const accessToken = authorization.substr(7)
 
@@ -52,10 +52,10 @@ module.exports = {
         try {
             payload = await jwtSvc.verify(accessToken)
         } catch (e) {
-            return next(global.MessageErr('VerifyFail'))
+            throw global.MessageErr('VerifyFail')
         }
         if (!payload) {
-            return next(global.MessageErr('VerifyFail'))
+            throw global.MessageErr('VerifyFail')
         }
 
         res.success(payload)
@@ -64,12 +64,12 @@ module.exports = {
     /**
      * register
      */
-    async register(req, res, next) {
+    async register(req, res) {
         let { sysType, username, password, avatar } = req.body
 
         // user exists
         if (await User.findOne({ where: { username } })) {
-            return next(global.MessageErr('UserExist'))
+            throw global.MessageErr('UserExist')
         }
 
         password = hash(password + config.HASH_SECRET)

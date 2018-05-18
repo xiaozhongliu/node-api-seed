@@ -33,7 +33,8 @@ app.use((req, res, next) => {
     next(global.MessageErr('NotFound', req.url))
 })
 
-app.use(({ code = -1, message, stack }, req, res, next) => { // eslint-disable-line 
+// eslint-disable-next-line
+app.use(({ code = -1, message, stack }, req, res, next) => {
     res.fail(code, message)
     if (code === -1) console.log(stack)
     if (code > 10001 || req.method === 'OPTIONS') return

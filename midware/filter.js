@@ -24,7 +24,7 @@ module.exports = (req, res, next) => {
 
             if (/\.log$/.test(request.url)) {
                 const logPath = path.resolve(config.API_LOG_PATH, request.url.substr(1))
-                return response.end(fs.readFileSync(logPath))
+                return fs.createReadStream(logPath).pipe(res)
             }
 
             next()
