@@ -5,6 +5,10 @@
 A node api seed project.  
 Wiki: https://github.com/xiaozhongliu/node-api-seed/wiki
 
+
+**This repo is not maintained any more, please move your step to the new typescript repo: 🎉 [ts-api-seed](https://github.com/xiaozhongliu/ts-api-seed) 🎉**
+
+
 ### Techs involved:
 
 |Aspect     |Tech                                                             |
